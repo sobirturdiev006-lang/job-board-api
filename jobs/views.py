@@ -11,9 +11,6 @@ class IsEmployer(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.role == 'employer'
 
-    def get_queryset(self):
-        return Job.objects.filter(company__owner=self.request.user)
-
 class CompanyViewSet(viewsets.ModelViewSet):
     serializer_class = CompanySerializer
     permission_classes = [permissions.IsAuthenticated, IsEmployer]

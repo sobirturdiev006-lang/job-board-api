@@ -1,6 +1,6 @@
 # 🧑‍💼 Job Board API
 
-A role-based Job Board backend system built with Django REST Framework.
+A role-based Job Board system built with Django REST Framework + React.
 It supports authentication, job posting, applications, and employer dashboard features.
 
 ---
@@ -16,26 +16,36 @@ It supports authentication, job posting, applications, and employer dashboard fe
 - Application status workflow (pending / accepted / rejected)
 - Search, filtering, and pagination
 - Swagger API documentation
+- React Frontend with Yellow-Black theme
 
 ---
 
 ## 🛠 Tech Stack
 
+### Backend
 - Python
 - Django
 - Django REST Framework
-- PostgreSQL (ready for production)
+- SQLite (ready for PostgreSQL)
 - JWT (SimpleJWT)
 - Django Filters
 - Swagger (drf-spectacular)
+- CORS Headers
+- Pillow (file uploads)
+
+### Frontend
+- React
+- Vite
+- Axios
 
 ---
 
 ## 📂 Project Structure
 
-- users → custom user & roles
-- jobs → company, job, application logic
-- API-first architecture
+- `config/` → Django settings & URLs
+- `users/` → custom user & roles, authentication
+- `jobs/` → company, job, application logic
+- `frontend/` → React frontend
 
 ---
 
@@ -45,6 +55,7 @@ JWT token-based authentication:
 
 - `/api/token/` → get access & refresh token
 - `/api/token/refresh/` → refresh token
+- `/api/register/` → register new user
 
 ---
 
@@ -52,6 +63,7 @@ JWT token-based authentication:
 
 ### Auth
 - POST `/api/token/`
+- POST `/api/register/`
 
 ### Companies
 - GET/POST `/api/companies/`
@@ -67,4 +79,62 @@ JWT token-based authentication:
 
 ## 📷 API Docs
 
-Swagger UI available at:
+Swagger UI available at: `http://localhost:8000/api/docs/`
+
+---
+
+## 🚀 Getting Started
+
+### Backend Setup
+
+1. **Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
+
+2. **Run migrations:**
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+3. **Create superuser:**
+```bash
+python manage.py createsuperuser
+```
+
+4. **Run server:**
+```bash
+python manage.py runserver
+```
+
+Backend will run at: `http://localhost:8000`
+
+### Frontend Setup
+
+1. **Navigate to frontend:**
+```bash
+cd frontend
+```
+
+2. **Install dependencies:**
+```bash
+npm install
+```
+
+3. **Run dev server:**
+```bash
+npm run dev
+```
+
+Frontend will run at: `http://localhost:5173`
+
+---
+
+## 🎨 Frontend Theme
+
+Yellow-Black theme with:
+- Black background (#000000)
+- Yellow accent (#ffd700)
+- Dark cards (#1a1a1a)
+- Modern UI components

@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.core.validators import FileExtensionValidator
 
 class Company(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='companies')
@@ -12,7 +13,7 @@ class Company(models.Model):
 
 
 class Job(models.Model):
-    company = models.ForeignKey(User, on_delete=models.CASCADE, related_name='jobs')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='jobs')
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     salary = models.IntegerField()
@@ -37,7 +38,14 @@ class Application(models.Model):
     applicant = models.ForeignKey(User, on_delete=models.CASCADE, related_name='applicants')
 
     cover_letter = models.TextField(blank=True)
-    cv = models.FileField(upload_to='cvs/', null=True, blank=True)
+    cv = models.FileField(
+        upload_to='cvs/',
+        null=True,
+        blank=True,
+        validators=[
+            FileExtensionValidator(['pdf', 'doc', 'docx'])
+        ]
+    )
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.PENDING)
 
     created_at = models.DateTimeField(auto_now_add=True)
