@@ -79,7 +79,7 @@ JWT token-based authentication:
 
 ## 📷 API Docs
 
-Swagger UI available at: `http://localhost:8000/api/docs/`
+Swagger UI available at: `http://127.0.0.1:8000/api/docs/`
 
 ---
 
